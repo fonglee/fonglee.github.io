@@ -11,7 +11,8 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-#前言
+# 前言
+
 本篇文章翻译自Kristian Lauszus的
 [A practical approach to Kalman filter and how to implement it](http://blog.tkjelectronics.dk/2012/09/a-practical-approach-to-kalman-filter-and-how-to-implement-it/)。  
 我对卡尔曼滤波器如何工作的一直非常有兴趣，并且在我的平衡机器人中也使用了卡尔曼滤波。但是我从未解释过它是怎么工作的，其实我从来没有好好坐下来，拿出一张纸和一张笔，来推导它，所以我并不知道它是怎么工作的。  
@@ -36,7 +37,7 @@ image:
 - [Kalman introduction](http://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf)
 - [Kalman courses](http://academic.csuohio.edu/simond/courses/eec644/kalman.pdf)
 
-#系统状态
+# 系统状态
 
 本文的后面部分可能会令你感到困惑，但是我想如果你擅长数学，顺着本文的思路拿起笔和一张纸来推导，那么这些对你来说将不会很困难。如果你和我一样，没有一个计算矩阵的计算器或者程序，那么我推荐一个在线的计算器[Wolfram Alpha](http://www.wolframalpha.com/),我本文所有的公式都是通过它计算的。  
 我将使用[维基百科](https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2)中的符号，但是如果一个矩阵是常量，并且不随着时间的变化而变化，我将不在后面写上$k$下标，比如$F_k$可以简写成$F$。  
@@ -148,10 +149,12 @@ $$var(v_k) = var(v)$$
 注意如果你把测量噪声方差$var(v)$设置的太高，滤波器将反应较慢，因为它会更加不相信新的测量值。但是如果设置过小，该值可能过冲，并且带来更多的噪声，因为更加相信加速度的测量值。  
 因此你必须找到过程噪声方差$Q_\theta$，$Q_{\dot\theta_b}$和测量噪声$var(v)$的测量方差。有很多方法去发现这个值，但是这个超出了本文的范畴。
 
-#卡尔曼滤波器方程
+# 卡尔曼滤波器方程
+
 现在回到需要用到的方程，我们将使用它来估计在时刻k的系统的真实状态$\hat x_k$。一些聪明的家伙想出了下面的方程来估计系统的状态。方程可以写的更紧凑，但我更喜欢让他们分开，因为这样更容易实现和理解不同的步骤。
 
-##预测
+## 预测
+
 在前两个方程中，我们将尝试预测当前状态，和在时刻k的误差协方差矩阵。首先滤波器将基于所有的先前状态和陀螺仪的测量值尝试估计当前状态：
 
 $$
@@ -174,7 +177,8 @@ $$
   \end{bmatrix}
 $$
 
-##更新
+## 更新
+
 首选我们需要做的是计算测量值$z_k$和先验状态$x_{k|k-1}$之间的误差，这也被称为新息：
 
 $$\tilde y = z_k - H\hat x_{k|k-1}$$
@@ -255,14 +259,14 @@ $$
 
 这个滤波器做的就是，基本上在根据我们修正估计的多少来校正自己的误差协方差矩阵。这是有意义的，因为我们基于先验误差协方差矩阵$P_{k\vert k-1}$和新息的协方差$S_k$修正状态。
 
-#滤波器的实现
+# 滤波器的实现
 
 在本节中，我将使用上面的公式用一个简单的C++代码实现卡尔曼滤波器，它可以用于平衡机器人，[四轴飞行器](http://blog.tkjelectronics.dk/2012/03/quadcopters-how-to-get-started/)和其他你需要计算角度，偏置或速率的应用。  
 如果需要代码，可以在GitHub上找到：
 https://github.com/TKJElectronics/KalmanFilter。
 我会简单地在每一个步骤的顶部写方程，然后在那之后简化它们，我会写如何使用c语言实现。
 
-##步骤1：
+## 步骤1：
 
 $$
 \begin{align}
@@ -304,7 +308,7 @@ angle += dt * rate;
 Wolfram Alpha的链接如下：
 [Eq. 1.1](http://www.wolframalpha.com/input/?i=%7B%7B1%2C-t%7D%2C%7B0%2C1%7D%7D*%7B%7Btheta%7D%2C%7Bb%7D%7D%2B%7B%7Bt%7D%2C%7B0%7D%7D*r) 
 
-##步骤2：
+## 步骤2：
 
 $$
 \begin{align}
@@ -350,7 +354,7 @@ P[1][1] += Q_gyroBias * dt;
 
 注意，这就是在我原来使用的代码中有错误的部分。
 
-##步骤3:
+## 步骤3:
 
 $$
 \begin{align}
@@ -370,7 +374,7 @@ $$
 y = newAngle - angle;
 ~~~
 
-##步骤4：
+## 步骤4：
 
 $$
 \begin{align}
@@ -394,7 +398,7 @@ $$
 S = P[0][0] + R_measure;
 ~~~
 
-##步骤5：
+## 步骤5：
 
 $$\begin{align}
 K_k & = P_{k|k-1}H^TS^{-1}_k \\
@@ -429,7 +433,7 @@ K[0] = P[0][0] / S;
 K[1] = P[1][0] / S;
 ~~~
 
-##步骤6：
+## 步骤6：
 
 $$
 \begin{align}
@@ -464,7 +468,7 @@ angle += K[0] * y;
 bias += K[1] * y;
 ~~~
 
-##步骤7：
+## 步骤7：
 
 $$
 \begin{align}
