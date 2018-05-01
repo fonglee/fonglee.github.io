@@ -1,7 +1,7 @@
 ---
 layout: post
-title: scull 驱动模块
-excerpt: "scull 驱动模块"
+title: git服务器的建立
+excerpt: "git服务器的建立"
 modified: 2014-10-12
 tags: [程序]
 comments: true
@@ -11,8 +11,7 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-git服务器的建立
----
+
 
 # 环境
 

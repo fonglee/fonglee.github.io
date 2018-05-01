@@ -11,7 +11,7 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-# 安装sublime3
+
 下载地址：[链接](https://www.sublimetext.com/3)
 
 
