@@ -11,7 +11,7 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-#### capture_open
+# capture_open
 
     void *capture = capture_open("/dev/video0", VIDEO_WIDTH, VIDEO_HEIGHT, AV_PIX_FMT_NV12);
 
@@ -90,7 +90,7 @@ image:
     */
     ioctl(id, VIDIOC_STREAMON, &type);
 
-### vc_open
+# vc_open
     void *encoder = vc_open(VIDEO_WIDTH, VIDEO_HEIGHT, VIDEO_FPS);
 
     struct Ctx
@@ -159,11 +159,11 @@ image:
     ctx->info_valid = 0;
 
 
-### sender_open
+# sender_open
 
     void *sender = sender_open(TARGET_IP, TARGET_PORT);
 
-### capture\_get\_picture
+# capture\_get\_picture
     
     capture_get_picture(capture, &pic);
 
@@ -185,7 +185,7 @@ image:
 
     ioctl(ctx->vid, VIDIOC_QBUF, &buf)
 
-### vc_compress  
+# vc_compress  
 
     int rc = vc_compress(encoder, pic.data, pic.stride, &outdata, &outlen);
 

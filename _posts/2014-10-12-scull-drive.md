@@ -11,7 +11,7 @@ image:
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
 
-### 驱动程序
+# 驱动程序
   
     scull_debug.c
 
@@ -22,7 +22,7 @@ image:
     Makefile
 
 
-### 测试程序
+# 测试程序
 
     scull_test：
  
@@ -31,13 +31,13 @@ image:
 
 
 
-#### 输入命令行，挂载设备
+## 输入命令行，挂载设备
 
     insmod scull_debug.ko scull_nr_devs=1 scull_quantum=6 scull_qset=2
 
-#### 输入：
+## 输入：
     cat  /proc/devices
-#### 输出：
+## 输出：
     Character devices:
       1 mem
       4 /dev/vc/0
@@ -96,11 +96,11 @@ image:
     253 virtblk
     254 mdp
 
-#### 输入命令行，建立设备文件scull0
+## 输入命令行，建立设备文件scull0
     mknod /dev/scull0 c 250 0
-#### 运行测试程序：
+## 运行测试程序：
     ./scull_test 
-#### 返回
+## 返回
     write error! code=6
     write error! code=6
     write error! code=6
@@ -114,9 +114,9 @@ image:
     [10]=10 [11]=11 [12]=12 [13]=13 [14]=14
     [15]=15 [16]=16 [17]=17 [18]=18 [19]=19
 
-#### 输入：
+## 输入：
     ls /proc/
-#### 返回：
+## 返回：
     1      1146   15533  1995  2344  2467  2605  356   50  68    979          filesystems    mounts         timer_list
     10     1157   15667  2     2348  2468  2623  372   51  7     99           fs             mpt            timer_stats
     100    1158   15720  2051  2349  2493  2638  373   52  7071  995          interrupts     mtrr           tty
@@ -137,27 +137,27 @@ image:
     1137   15     1862   2342  2450  26    3     48    66  973   execdomains  misc           sysrq-trigger
     11450  15532  1980   2343  2466  260   35    49    67  974   fb           modules        sysvipc
 
-#### 输入：
+## 输入：
     cat /proc/scullmem
-#### 输出：
+## 输出：
     Device 0: qset 2, q 6, sz 20
       item at f1976868, qset at f1976ff0
       item at f1976498, qset at f1976650
            0: f1976cc8
            1: f1976310
 
-#### 输入：
+## 输入：
     cat /proc/scullseq
-#### 输出：
+## 输出：
     Device 0: qset 2, q 6, sz 20
       item at f1976868, qset at f1976ff0
       item at f1976498, qset at f1976650
            0: f1976cc8
            1: f1976310
 
-#### 重新执行
+## 重新执行
     ./scull_test
-#### 输出：
+## 输出：
     write error! code=6
     write error! code=6
     write error! code=6
@@ -171,25 +171,25 @@ image:
     [10]=10 [11]=11 [12]=12 [13]=13 [14]=14
     [15]=15 [16]=16 [17]=17 [18]=18 [19]=19
 
-#### 输入：
+## 输入：
     cat /proc/scullmem
-#### 输出：
+## 输出：
     Device 0: qset 2, q 6, sz 20
       item at f1976498, qset at f1976650
       item at f1976868, qset at f1976ff0
            0: f1976720
            1: f1976828
 
-#### 输入：
+## 输入：
     cat /proc/scullseq
-#### 输出：
+## 输出：
     Device 0: qset 2, q 6, sz 20
       item at f1976498, qset at f1976650
       item at f1976868, qset at f1976ff0
            0: f1976720
            1: f1976828
 
-### 分析
+# 分析
     insmod scull_debug.ko scull_nr_devs=1 scull_quantum=6 scull_qset=2
 将调用驱动程序文件`scull_debug.c`里面的`int scull_init_module(void)`函数，此函数里面将执行，`result = alloc_chrdev_region(&dev, scull_minor, scull_nr_devs, "scull")`;此函数为向内核注册驱动程序，设备号动态分配，dev返回分配的设备编号，`scull_minor`为要使用的被请求的第一个此设备号为0，`scul_nr_devs`为所请求设备编号的个数，“scull”为设备的名称，它将出现在/proc/devices 和sysfs中。
 `scull_major = MAJOR(dev)`;获得设备的主设备号
@@ -201,7 +201,7 @@ image:
           init_MUTEX(&scull_devices[0].sem);信息量互斥锁
           scull_setup_cdev(&scull_devices[0], 0);
 
-#### scull_setup_cdev：
+## scull_setup_cdev：
 
 `devno = MKDEV(scull_major, scull_minor + index)`;将主设备号和此设备号转换为dev_t型
 `cdev_init(&dev->cdev, &scull_fops)`;将cdev结构嵌入到自己的设备特定结构中，初始化
