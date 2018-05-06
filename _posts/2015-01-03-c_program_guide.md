@@ -3,7 +3,7 @@ layout: post
 title: 高质量C编程指南笔记
 excerpt: "高质量C编程指南笔记"
 modified: 2015-01-03
-tags: [程序]
+tags: [c]
 comments: true
 image:
   feature: sample-image-4.jpg

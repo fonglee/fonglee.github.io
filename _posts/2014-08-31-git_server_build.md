@@ -3,7 +3,7 @@ layout: post
 title: git服务器的建立
 excerpt: "git服务器的建立"
 modified: 2014-10-12
-tags: [程序]
+tags: [编程]
 comments: true
 image:
   feature: sample-image-4.jpg

@@ -3,7 +3,7 @@ layout: post
 title: scull 驱动模块
 excerpt: "scull 驱动模块"
 modified: 2014-10-12
-tags: [程序]
+tags: [c]
 comments: true
 image:
   feature: sample-image-4.jpg

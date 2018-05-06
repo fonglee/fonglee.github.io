@@ -3,7 +3,7 @@ layout: post
 title: webcam代码分析
 excerpt: "webcam代码分析"
 modified: 2014-10-04
-tags: [程序]
+tags: [c]
 comments: true
 image:
   feature: sample-image-4.jpg
