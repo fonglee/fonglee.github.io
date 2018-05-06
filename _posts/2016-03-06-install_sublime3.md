@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 安装sublime3
-excerpt: "安装sublime3"
+excerpt: "安装sublime3常用插件"
 modified: 2016-03-06
-tags: [程序]
+tags: [编程]
 comments: true
 image:
   feature: sample-image-4.jpg

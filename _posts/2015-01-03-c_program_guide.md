@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 高质量C编程指南笔记
-excerpt: "高质量C编程指南笔记"
+excerpt: "C编程规范"
 modified: 2015-01-03
 tags: [c]
 comments: true

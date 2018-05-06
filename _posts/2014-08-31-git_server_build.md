@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git服务器的建立
-excerpt: "git服务器的建立"
+excerpt: "建立自己的git服务器"
 modified: 2014-10-12
 tags: [编程]
 comments: true

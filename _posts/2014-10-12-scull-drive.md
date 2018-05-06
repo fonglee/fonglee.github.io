@@ -1,7 +1,7 @@
 ---
 layout: post
 title: scull 驱动模块
-excerpt: "scull 驱动模块"
+excerpt: "scull 驱动模块分析"
 modified: 2014-10-12
 tags: [c]
 comments: true
