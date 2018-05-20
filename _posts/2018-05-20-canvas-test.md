@@ -14,16 +14,15 @@ image:
 # 嘿嘿
 
 <div >
-    <canvas id="lovec"></canvas> 
+    <canvas id="lovec" style="width: 100%"></canvas> 
 <div>
 
 
 <script>  
 debugger; 
-var c = document.getElementById('lovec');
-var a = c.getContext('2d');
-</script>
-<script>
+function draw() {
+    var c = document.getElementById('lovec');
+    var a = c.getContext('2d');
     var ele = [];
     var h = [];
     var O = c.width = innerWidth;
@@ -49,7 +48,6 @@ var a = c.getContext('2d');
         a.closePath();
         a.fill() }
     setInterval(function() { 
-        debugger;
         a.fillStyle = "rgba(0,0,0,.2)";
         a.fillRect(0, 0, O, Q); 
         for (var i = v; i--;) { 
@@ -67,6 +65,10 @@ var a = c.getContext('2d');
             _(u);
             u.X *= u.F;
             u.Y *= u.F; for (k = 0; k < v - 1;) T = f[k], N = f[++k], N.x -= 0.7 * (N.x - T.x), N.y -= 0.7 * (N.y - T.y), _(N) } }, 25);
+}
+
+draw();
+
 </script>
 
 
