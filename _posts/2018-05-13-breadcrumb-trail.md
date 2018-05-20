@@ -2,7 +2,7 @@
 layout: post
 title: 面包屑导航
 excerpt: "面包屑导航（英语：Breadcrumb Trail）是在用户界面中的一种导航辅助。它是用户一个在程序或文件中确定和转移他们位置的一种方法。面包屑这个词来自糖果屋这个童话故事。"
-modified: 2018-05-05
+modified: 2018-05-13
 tags: [javascript]
 comments: true
 image:

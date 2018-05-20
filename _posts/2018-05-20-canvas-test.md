@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Test
-excerpt: "It is test"
+title: Canvas
+excerpt: "It is canvas test"
 modified: 2018-05-20
 tags: [javascript]
 comments: true
